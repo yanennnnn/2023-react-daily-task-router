@@ -32,9 +32,7 @@ function App() {
         <Routes>
           <Route path="/register" element={ <Register/> }/>
           <Route path='/login' element={ <Login/> }/>
-          <Route path='/todo' element={ <Todo/> }>
-            { Todo }
-          </Route>    
+          <Route path='/todo' element={ <Todo/> }/>   
         </Routes>
         {/* Routes, Route 練習區 */}
         {/* 練習區 */}
