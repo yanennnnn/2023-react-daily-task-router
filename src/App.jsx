@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, NavLink, Route, Routes, useNavigate   } from 'react-router-dom';
+import { HashRouter, NavLink, Route, Routes, useNavigate, useParams, Outlet  } from 'react-router-dom';
 
 const Todo = () => {
   const navigate = useNavigate();
@@ -14,6 +14,20 @@ const Login = () => {
 const Register = () => {
   return <p>這是註冊頁面</p>;
 };
+
+const Post = () => {
+  return <>
+    這是 Post 父層
+    <Outlet />
+  </>
+}
+
+const PostChild = () => {
+  const param = useParams()
+  return <div>
+    這是子層 {param.postId}
+  </div>
+}
 
 function App() {
  
@@ -33,11 +47,20 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post頁面</p>
+          </NavLink>
+          <NavLink to="/post/post123">
+            <p>Post Id 頁面</p>
+          </NavLink>
         </div>
         <Routes>
           <Route path="/register" element={ <Register/> }/>
           <Route path='/login' element={ <Login/> }/>
-          <Route path='/todo' element={ <Todo/> }/>   
+          <Route path='/todo' element={ <Todo/> }/>
+          <Route path="/post" element={ <Post/>  }>
+            <Route path=":postId" element={ <PostChild/>  }/>
+          </Route>
         </Routes>
         {/* Routes, Route 練習區 */}
         {/* 練習區 */}
